@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO-DO TODAY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/3cafc5aa30.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search all tasks" />
+            </div>
+
+            <div class="nav-icons">
+                <button class="icon-btn">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </button>
+
+                <button class="icon-btn profile-btn">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="title">
+                <div class="greeting" id="greeting">Good Morning, User!</div>
+                <h1>
+                    You have <span id="task-count">0</span> task(s) to do today
+                    <button class="add-task-btn" id="add-task-btn" onclick="openAddTaskModal()">
+                        <i class="fa-solid fa-plus"></i> Add New Task
+                    </button>
+                </h1>
+            </div>
+
+            <section class="tasks-section">
+                <div class="section-header">
+                    <h2>To Do</h2>
+                </div>
+                <div class="tasks" id="to-do-tasks">
+                    <!-- Task items will be dynamically added here -->
+                </div>
+            </section>
+
+            <section class="tasks-section">
+                <div class="section-header">
+                    <h2>Completed</h2>
+                    <!-- <span class="badge badge-inactive">Inactive</span> -->
+                </div>
+                <div class="tasks" id="completed-tasks"></div>
+            </section>
+        </div>
+
+        <div class="sidebar">
+            <section class="sidebar-section">
+                <div class="sidebar-title">Summary</div>
+                <div class="stats-card">
+                    <div class="stat-label">Completion Rate</div>
+                    <div class="stat-value" id="completionRateValue">0%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="completionProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stat-label">Total Tasks</div>
+                    <div class="stat-value" id="totalTasksValue">0</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="totalTasksProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stat-label">Completed Tasks</div>
+                    <div class="stat-value" id="completedTasksValue">0</div>
+                </div>
+
+
+                <div class="stats-card">
+                    <div class="stat-label">Pending Tasks</div>
+                    <div class="stat-value" id="pendingTasksValue">0</div>
+                </div>
+        </div>
+
+    </div>
+    
+
+    <div class="modal" id="addTaskModal">
+        <div class="modal-content">
+            <h2 class="modal-header">Add Task</h2>
+            <form action="" id="addTaskForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="addTaskTitle">Task Title</label>
+                    <input type="text" id="addTaskTitle" name="addTaskTitle" placeholder="Enter task title" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="addTaskDescription">Task Description</label>
+                    <input type="text" id="addTaskDescription" name="addTaskDescription" placeholder="Enter task description" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="addTaskStatus">Status</label>
+                    <select id="addTaskStatus" name="addTaskStatus">
+                        <option value="pending">Pending</option>
+                        <option value="active">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="addTaskPriority">Priority</label>
+                    <select id="addTaskPriority" name="addTaskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-secondary" type="button" onclick="closeAddTaskModal()">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="updateTaskModal">
+        <div class="modal-content">
+            <h2 class="modal-header">Edit Task</h2>
+            <form action="" id="editTaskForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="editTaskTitle">Task Title</label>
+                    <input type="text" id="editTaskTitle" name="editTaskTitle" placeholder="Enter task title" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="editTaskDescription">Task Description</label>
+                    <input type="text" id="editTaskDescription" name="editTaskDescription" placeholder="Enter task description" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="editTaskStatus">Status</label>
+                    <select id="editTaskStatus" name="editTaskStatus">
+                        <option value="pending">Pending</option>
+                        <option value="active">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="editTaskPriority">Priority</label>
+                    <select id="editTaskPriority" name="editTaskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-secondary" type="button" onclick="closeUpdateTaskModal()">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
