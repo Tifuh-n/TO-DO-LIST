@@ -62,11 +62,11 @@ A modern web browser (Chrome, Firefox, Edge or Safari). An internet connection i
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Tifuh-n/your-repo-name.git
+   git clone https://github.com/Tifuh-n/TO-DO-LIST.git
    ```
 2. **Open the project folder**
    ```bash
-   cd your-repo-name
+   cd TO-DO-LIST
    ```
 3. **Launch the app** – open `index.html` in your browser, or serve it with a simple local server:
    ```bash
